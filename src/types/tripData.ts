@@ -9,6 +9,3 @@ export interface TripAddOn {
   item: string;
   detail: string;
 }
-
-export type TripAddOnCSVRow = TripAddOn;
-

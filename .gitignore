@@ -44,6 +44,8 @@ coverage/
 
 # Firebase
 .firebase/
+.firebaserc
+firebase.json
 *-debug.log
 firebase-debug.log
 firestore-debug.log
