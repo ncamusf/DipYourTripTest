@@ -89,14 +89,7 @@ const API_ENDPOINT = 'http://localhost:5001/YOUR-PROJECT-ID/us-central1/tripBroc
 ### Via Web UI (Easiest)
 
 1. **Open** `http://localhost:8000` in browser
-2. **Create CSV file** with format:
-   ```csv
-   Name,Description,Price
-   Wine Tasting,Premium wine experience,150
-   Beach Day,Relax on pristine beaches,75
-   Hiking,Mountain trails with guides,120
-   ```
-3. **Upload** via drag-and-drop or click
+3. **Upload CSV file** via drag-and-drop or click
 4. **Click** "Generate Brochure"
 5. **Wait** 1-2 minutes for processing
 6. **Download** your PDF!
@@ -107,7 +100,7 @@ const API_ENDPOINT = 'http://localhost:5001/YOUR-PROJECT-ID/us-central1/tripBroc
 curl -X POST https://us-central1-hemolyzer-ai-ca5bb.cloudfunctions.net/tripBrochureAgentGenerator \
   -H "Content-Type: application/json" \
   -d '{
-    "csvData": "Name,Description,Price\nWine Tasting,Premium wine experience,150\nBeach Day,Relaxing beach excursion,75"
+    "csvData": "dataBase64"
   }'
 ```
 
@@ -176,31 +169,10 @@ firebase deploy --only functions
 
 ```
 
-## 🐛 Quick Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| CORS errors | Use local server, don't open HTML directly |
-| Function timeout | Wait 2-3 minutes, check backend logs |
-| CSV not accepted | Ensure headers: Name, Description, Price |
-| Button disabled | Check file is valid CSV format |
-
-**More details:** See `backend/README.md` and `frontend/README.md`
-
 ## 📚 Documentation
 
 - **[Backend README](backend/README.md)** - API docs, deployment, configuration
 - **[Frontend README](frontend/README.md)** - UI guide, customization, deployment
-
-## 📝 CSV Format
-
-```csv
-Name,Description,Price
-Activity Name,Activity Description,Numeric Price
-Wine Tasting,Experience local vineyards,150
-```
-
-**Required columns:** Name, Description, Price
 
 ## 📞 Support
 
