@@ -82,7 +82,7 @@ function downloadImage(url: string, outputPath: string): Promise<void> {
         resolve();
       });
     }).on('error', (err) => {
-      fs.unlink(outputPath, () => {}); // Delete partial file
+      fs.unlink(outputPath, () => {});
       reject(err);
     });
   });
@@ -97,7 +97,6 @@ async function optimizeImage(
   
   let pipeline = sharp(inputPath);
   
-  // Resize if needed
   if (options.maxWidth || options.maxHeight) {
     pipeline = pipeline.resize(options.maxWidth, options.maxHeight, {
       fit: 'inside',
@@ -105,7 +104,6 @@ async function optimizeImage(
     });
   }
   
-  // Convert and compress based on format
   switch (options.format) {
     case 'webp':
       pipeline = pipeline.webp({ quality: options.quality || 80 });
@@ -136,27 +134,25 @@ export async function downloadAndOptimizeImages(
   optimizedSize: number;
   savings: string;
 }>> {
-  // Set defaults
+
   const opts: Required<OptimizeOptions> = {
-    quality: options.quality || 80,
-    maxWidth: options.maxWidth || 1920,
-    maxHeight: options.maxHeight || 1080,
+    quality: options.quality || 70,
+    maxWidth: options.maxWidth || 1200,
+    maxHeight: options.maxHeight || 675,
     format: options.format || 'jpeg',
     outputDir: options.outputDir || path.join(process.cwd(), 'pdfTempleate', 'images'),
   };
-  
-  // Create output directory if it doesn't exist
+
   if (!fs.existsSync(opts.outputDir)) {
     fs.mkdirSync(opts.outputDir, { recursive: true });
   }
   
-  // Create temp directory for downloads
+
   const tempDir = path.join(opts.outputDir, 'temp');
   if (!fs.existsSync(tempDir)) {
     fs.mkdirSync(tempDir, { recursive: true });
   }
   
-  // Process all images in parallel for better performance
   const results = await Promise.all(
     imageUrls.map(async (url) => {
       try {

@@ -24,6 +24,14 @@ export async function uploadPdf(
 
   try {
     const pdfBuffer = fs.readFileSync(pdfPath);
+    const fileSizeInMB = (pdfBuffer.length / (1024 * 1024)).toFixed(2);
+    
+    logger.info(`PDF file size: ${fileSizeInMB} MB`);
+    
+    // Warn if file is larger than 10MB (typical limit for many services)
+    if (pdfBuffer.length > 10 * 1024 * 1024) {
+      logger.warn(`⚠️ PDF file is large (${fileSizeInMB} MB). Upload may fail.`);
+    }
     
     const formData = new FormData();
     const blob = new Blob([pdfBuffer], { type: "application/pdf" });
@@ -33,7 +41,7 @@ export async function uploadPdf(
     url.searchParams.append("candidate_id", "NicoCamus");
     url.searchParams.append("file_name", fileName);
 
-    logger.info("Uploading PDF to:", url.toString());
+    logger.info(`Uploading PDF (${fileSizeInMB} MB) to:`, url.toString());
 
     const response = await fetch(url.toString(), {
       method: "POST",

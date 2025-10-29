@@ -130,7 +130,7 @@ export async function generatePDFFile(
       await page.setViewport({
         width: 1920,
         height: 1080,
-        deviceScaleFactor: 2 
+        deviceScaleFactor: 1 
       });
       
       const baseDir = path.join(process.cwd(), 'pdfTempleate');
@@ -213,7 +213,7 @@ export async function generatePDFBase64(
       await page.setViewport({
         width: 1920,
         height: 1080,
-        deviceScaleFactor: 2 
+        deviceScaleFactor: 1
       });
       
       const baseDir = path.join(process.cwd(), 'pdfTempleate');
