@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dip Your Trip - Trip Brochure Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="brand-header">
+                <img src="logo/dipLogo.png" alt="Dip Your Trip Logo" class="logo">
+                <h1 class="brand-name">Dip Your Trip</h1>
+                <p class="brand-tagline">Create Your Perfect Journey</p>
+            </div>
+            <p class="subtitle">Upload your trip CSV file to generate a beautiful brochure</p>
+            
+            <div class="upload-section">
+                <input 
+                    type="file" 
+                    id="csvFile" 
+                    accept=".csv"
+                    class="file-input"
+                    aria-label="Upload CSV file"
+                >
+                <label for="csvFile" class="file-label" id="fileLabel">
+                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <span class="label-text">Choose CSV File</span>
+                    <span class="label-hint">or drag and drop here</span>
+                </label>
+                
+                <div id="fileInfo" class="file-info hidden">
+                    <span class="file-name"></span>
+                    <button id="clearFile" class="clear-btn" aria-label="Clear file">✕</button>
+                </div>
+
+                <button id="uploadBtn" class="upload-btn" disabled>
+                    Generate Brochure
+                </button>
+            </div>
+
+            <div id="progressSection" class="progress-section hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="progress-text">Processing your request... This may take 1 to 2 minutes</p>
+            </div>
+
+            <div id="resultSection" class="result-section hidden">
+                <div class="result-content">
+                    <h2 class="result-title">✅ Success!</h2>
+                    <p class="result-message"></p>
+                    <div class="result-actions">
+                        <a id="downloadLink" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                            Download PDF
+                        </a>
+                        <button id="newUpload" class="btn btn-secondary">
+                            Upload Another File
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="errorSection" class="error-section hidden">
+                <div class="error-content">
+                    <h2 class="error-title">⚠️ Error</h2>
+                    <p class="error-message"></p>
+                    <button id="tryAgain" class="btn btn-secondary">
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
