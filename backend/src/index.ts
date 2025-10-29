@@ -1,0 +1,1 @@
+export { tripBrochureAgentGenerator } from './functions/tripBrochureAgentGenerator';

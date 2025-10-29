@@ -1,0 +1,35 @@
+{
+  "name": "dipyourtrip-test-ncamus",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "optimize-images": "npm run build && node dist/examples/optimize-images.js",
+    "generate-brochure": "npm run build && node dist/src/services/generateBrochure.js full",
+    "generate-brochure:minimal": "npm run build && node dist/src/services/generateBrochure.js minimal",
+    "generate-brochure:both": "npm run build && node dist/src/services/generateBrochure.js both"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
+    "firebase-functions": "^6.6.0",
+    "puppeteer": "^24.15.0",
+    "sharp": "^0.33.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.10.0",
+    "firebase-admin": "^12.0.0",
+    "firebase-tools": "^13.0.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
