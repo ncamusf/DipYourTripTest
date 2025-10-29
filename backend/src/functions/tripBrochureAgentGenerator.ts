@@ -51,7 +51,8 @@ async function tripBrochureGeneratorProcess(csvData: string | undefined): Promis
 export const tripBrochureAgentGenerator = onRequest(
   {
     timeoutSeconds: 540,
-    memory: '2GiB'
+    memory: '2GiB',
+    cors: true
   },
   async (req, res) => {
     try {

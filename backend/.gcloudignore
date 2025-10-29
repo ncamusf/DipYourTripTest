@@ -1,37 +1,39 @@
-# This file specifies files that are *not* uploaded to Google Cloud
-# using gcloud. It follows the same syntax as .gitignore
+# Ignore source files (we'll use the compiled dist)
+src/
+test/
+*.ts
+*.test.js
 
-.gcloudignore
-.git
+# Git files
+.git/
 .gitignore
 
-# Node.js dependencies
-node_modules/
+# Documentation
+README.md
+*.md
 
-# Build output
-dist/
+# Test and coverage
+coverage/
+*.test.ts
+*.test.js
 
-# TypeScript
-*.ts
-!src/**/*.ts
-tsconfig.json
-
-# Environment variables
-.env
-.env.*
+# IDE
+.vscode/
+.idea/
+.DS_Store
 
 # Logs
 *.log
+ui-debug.log
+firebase-debug.log
 
-# Editor
-.vscode/
-.idea/
+# Environment files
+.env
+.env.*
 
-# OS
-.DS_Store
-Thumbs.db
+# Build artifacts
+pdfs/
 
-# Testing
-coverage/
-.nyc_output/
-
+# Firebase
+firebase.json
+.firebaserc

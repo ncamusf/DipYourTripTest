@@ -104,19 +104,23 @@ export async function generatePDFFile(
     } = {}
   ): Promise<string> {
     try {
-      const puppeteer = await import('puppeteer');
+      const puppeteer = await import('puppeteer-core');
+      const chromium = await import('@sparticuz/chromium');
       
       logger.info('Launching browser for PDF generation (local file)...');
       
       const browser = await puppeteer.default.launch({
-        headless: true,
         args: [
+          ...chromium.default.args,
           '--no-sandbox',
           '--disable-setuid-sandbox',
           '--disable-dev-shm-usage',
           '--disable-accelerated-2d-canvas',
           '--disable-gpu'
-        ]
+        ],
+        defaultViewport: chromium.default.defaultViewport,
+        executablePath: await chromium.default.executablePath(),
+        headless: chromium.default.headless
       });
 
       const page = await browser.newPage();
@@ -184,20 +188,24 @@ export async function generatePDFBase64(
     } = {}
   ): Promise<string> {
     try {
-      const puppeteer = await import('puppeteer');
+      const puppeteer = await import('puppeteer-core');
+      const chromium = await import('@sparticuz/chromium');
       
       logger.info('Launching browser for PDF generation (base64)...');
       
 
       const browser = await puppeteer.default.launch({
-        headless: true,
         args: [
+          ...chromium.default.args,
           '--no-sandbox',
           '--disable-setuid-sandbox',
           '--disable-dev-shm-usage',
           '--disable-accelerated-2d-canvas',
           '--disable-gpu'
-        ]
+        ],
+        defaultViewport: chromium.default.defaultViewport,
+        executablePath: await chromium.default.executablePath(),
+        headless: chromium.default.headless
       });
 
       const page = await browser.newPage();
